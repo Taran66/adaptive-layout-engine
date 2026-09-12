@@ -116,14 +116,27 @@ export function resolveLayout(spec: AdSpec, surface: SurfaceProfile): ResolvedLa
     visible: false,
   }));
 
+  const usedSpace = cursor - (orientation === "row" ? content.x : content.y);
+  const leftover = mainAxisTotal - usedSpace;
+
+  if (leftover > 0) {
+    const growable = resolvedVisible.filter((_, i) => visible[i].priority === 1);
+    const growPerElement = leftover / Math.max(growable.length, 1);
+    let shift = 0;
+    resolvedVisible.forEach((el, i) => {
+      if (orientation === "row") el.x += shift;
+      else el.y += shift;
+      if (visible[i].priority === 1) {
+        if (orientation === "row") el.width += growPerElement;
+        else el.height += growPerElement;
+        shift += growPerElement;
+      }
+    });
+  }
+
   return {
     surfaceId: surface.id,
     elements: [...resolvedVisible, ...resolvedDropped],
   };
 }
 
-import { productAdSpec } from "./spec";
-import { surfaces } from "./surfaces";
-
-console.log(JSON.stringify(resolveLayout(productAdSpec, surfaces.retailKiosk), null, 2));
-console.log(JSON.stringify(resolveLayout(productAdSpec, surfaces.broadcastLowerThird), null, 2));

@@ -37,16 +37,22 @@ export const surfaces: Record<string, SurfaceProfile> = {
   },
   broadcastLowerThird: {
     id: "broadcastLowerThird",
-    width: 1920,
+    width: 1020,
     height: 250,
     viewingDistance: "far",
     minTextSize: 32,
   },
   retailKiosk: {
     id: "retailKiosk",
-    width: 1080,
-    height: 1080,
+    width: 400,
+    height: 250,
     minTapTarget: 60,
     touchOnly: true,
   },
+  weirdBanner: {
+  id: "weirdBanner",
+  width: 2400,
+  height: 90,
+  minTextSize: 14,
+},
 };

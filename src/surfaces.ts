@@ -44,15 +44,9 @@ export const surfaces: Record<string, SurfaceProfile> = {
   },
   retailKiosk: {
     id: "retailKiosk",
-    width: 400,
-    height: 250,
+    width: 1080,
+    height: 1080,
     minTapTarget: 60,
     touchOnly: true,
   },
-  weirdBanner: {
-  id: "weirdBanner",
-  width: 2400,
-  height: 90,
-  minTextSize: 14,
-},
 };

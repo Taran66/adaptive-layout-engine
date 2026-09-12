@@ -19,6 +19,8 @@ export function defineAd(spec: AdSpec): AdSpec {
   return spec;
 }
 
+
+// example specs
 export const productAdSpec = defineAd({
   elements: [
     { id: "headline", type: "text", role: "primary", priority: 1 },
